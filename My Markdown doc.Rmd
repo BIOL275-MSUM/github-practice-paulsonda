@@ -1,19 +1,123 @@
 ---
-title: "Untitled"
-output: github_document
+title: "practice github"
+author: "Daniel Paulson""
+date: "March 13, 2019""
+output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Load the Packages
+loaded the tidyverse package and the package to read excel files
 
-Loading the R Packages
 ```{r}
-#load packages
+library(readxl)     
+library(tidyverse) 
+```
 
-library(readxl)     # load readxl, for reading Excel files
-library(tidyverse)  # load tidyverse, for working with datasets
+make the excel file read to finches
+
+```{r}
+
+finches <- read_excel("finches_data.xlsx")
+```
+
+make the finches data a tibble
+
+```{r}
+finches
+```
+
+able to look at the finches data set
+```{r}
+glimpse(finches)
+```
+
+Plot a histogram
+```{r}
+ggplot(
+  data = finches,
+  mapping = aes(x = beak_length,
+                fill = outcome)
+) +
+  geom_histogram(bins = 14) +  
+   facet_wrap(~ outcome, ncol = 1) +
+  guides(fill = FALSE) +  
+   labs(
+    title = "Figure 1.", 
+     x = "Beak Length (mm)", 
+   y = "Number of Birds" 
+   )
+```
+
+Summarize the data
+```{r}
+beak_length_grouped_summary <- 
+  finches %>% 
+  group_by(outcome) %>% 
+  summarize(mean = mean(beak_length),
+            sd = sd(beak_length),
+            n = n()) %>% 
+  mutate(sem = sd / sqrt(n),
+         upper = mean + 1.96 * sem,
+         lower = mean - 1.96 * sem)
+```
+
+print results in the console
+```{r}
+beak_length_grouped_summary
+```
+
+make a bar chart
+```{r}
+ggplot(
+  data = beak_length_grouped_summary,
+  mapping = aes(x = outcome, 
+                y = mean, 
+                 fill = outcome)
+) +
+  geom_col() + 
+  geom_errorbar(
+    mapping = aes(ymin = lower,
+                   ymax = upper),
+    width = .3  
+  ) +
+  guides(fill = FALSE) +
+   labs(
+    title = "Figure 2.", 
+     x = "Survival Outcome",
+     y = "Beak Length (mm)"
+   )
+```
+
+get vector for birds that died
+```{r}
+beak_length_died <-
+  finches %>% 
+  filter(outcome == "died") %>%
+  pull(beak_length) 
+```
+
+print object in console
+```{r}
+beak_length_died
+```
+
+Get vector of beak lenghts for birds that survived
+```{r}
+beak_length_survived <-
+  finches %>% 
+  filter(outcome == "survived") %>% 
+  pull(beak_length
+```
+
+print results in console
+```{r}
+beak_length_survived
+```
+
+perform a t-test
+```{r}
+t.test(beak_length_died, beak_length_survived)
 ```
 

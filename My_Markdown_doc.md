@@ -1,33 +1,48 @@
 Untitled
 ================
 
-GitHub Documents
-----------------
+Load the Packages
+-----------------
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
-
-Including Code
---------------
-
-You can include R code in the document as follows:
+Loading the R Packages
 
 ``` r
-summary(cars)
+#load packages
+
+library(readxl)     # load readxl, for reading Excel files
 ```
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+    ## Warning: package 'readxl' was built under R version 3.5.3
 
-Including Plots
----------------
+``` r
+library(tidyverse)  # load tidyverse, for working with datasets
+```
 
-You can also embed plots, for example:
+    ## Warning: package 'tidyverse' was built under R version 3.5.3
 
-![](My_Markdown_doc_files/figure-markdown_github/pressure-1.png)
+    ## -- Attaching packages --------------- tidyverse 1.2.1 --
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+    ## v ggplot2 3.1.0       v purrr   0.3.1  
+    ## v tibble  2.0.1       v dplyr   0.8.0.1
+    ## v tidyr   0.8.3       v stringr 1.4.0  
+    ## v readr   1.3.1       v forcats 0.4.0
+
+    ## Warning: package 'ggplot2' was built under R version 3.5.3
+
+    ## Warning: package 'tibble' was built under R version 3.5.3
+
+    ## Warning: package 'tidyr' was built under R version 3.5.3
+
+    ## Warning: package 'readr' was built under R version 3.5.3
+
+    ## Warning: package 'purrr' was built under R version 3.5.3
+
+    ## Warning: package 'dplyr' was built under R version 3.5.3
+
+    ## Warning: package 'stringr' was built under R version 3.5.3
+
+    ## Warning: package 'forcats' was built under R version 3.5.3
+
+    ## -- Conflicts ------------------ tidyverse_conflicts() --
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
