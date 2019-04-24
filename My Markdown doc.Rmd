@@ -2,7 +2,7 @@
 title: "Practice github"
 author: "Daniel Paulson"
 date: "March 13, 2019"
-output: html_document
+output: github_document
 ---
 ```{r setup, include= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
