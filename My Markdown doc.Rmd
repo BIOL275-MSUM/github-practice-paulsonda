@@ -1,39 +1,39 @@
 ---
-title: "practice github"
-author: "Daniel Paulson""
-date: "March 13, 2019""
+title: "Practice github"
+author: "Daniel Paulson"
+date: "March 13, 2019"
 output: html_document
 ---
-```{r setup, include=FALSE}
+```{r setup, include= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-loaded the tidyverse package and the package to read excel files
+###Loaded the tidyverse package and the package to read excel files
 
-```{r}
+```{r, warning=FALSE, include=TRUE, message=FALSE}
 library(readxl)     
 library(tidyverse) 
 ```
 
-make the excel file read to finches
+###Make the excel file read to finches
 
 ```{r}
 
 finches <- read_excel("finches_data.xlsx")
 ```
 
-make the finches data a tibble
+###Make the finches data a tibble
 
 ```{r}
 finches
 ```
 
-able to look at the finches data set
+###Able to look at the finches data set
 ```{r}
 glimpse(finches)
 ```
 
-Plot a histogram
+###Plot a histogram
 ```{r}
 ggplot(
   data = finches,
@@ -50,7 +50,7 @@ ggplot(
    )
 ```
 
-Summarize the data
+###Summarize the data
 ```{r}
 beak_length_grouped_summary <- 
   finches %>% 
@@ -63,12 +63,12 @@ beak_length_grouped_summary <-
          lower = mean - 1.96 * sem)
 ```
 
-print results in the console
+###Print results in the console
 ```{r}
 beak_length_grouped_summary
 ```
 
-make a bar chart
+###Make a bar chart
 ```{r}
 ggplot(
   data = beak_length_grouped_summary,
@@ -90,7 +90,7 @@ ggplot(
    )
 ```
 
-get vector for birds that died
+###Get vector for birds that died
 ```{r}
 beak_length_died <-
   finches %>% 
@@ -98,25 +98,25 @@ beak_length_died <-
   pull(beak_length) 
 ```
 
-print object in console
+###Print object in console
 ```{r}
 beak_length_died
 ```
 
-Get vector of beak lenghts for birds that survived
+###Get vector of beak lenghts for birds that survived
 ```{r}
 beak_length_survived <-
   finches %>% 
   filter(outcome == "survived") %>% 
-  pull(beak_length
+  pull(beak_length)
 ```
 
-print results in console
+###Print results in console
 ```{r}
 beak_length_survived
 ```
 
-perform a t-test
+###Perform a t-test
 ```{r}
 t.test(beak_length_died, beak_length_survived)
 ```
